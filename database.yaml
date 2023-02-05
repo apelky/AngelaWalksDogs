@@ -1,0 +1,16 @@
+cookie:
+  expiry_days: 30
+  key: some_signature_key
+  name: some_cookie_name
+credentials:
+  usernames:
+    apelky:
+      email: pelkyangela@gmail.com
+      name: Angela Pelky
+      password: $2b$12$HQikqjr0EvaNYqZzBPLhqOgsUGBj9gKCy7q3CrJirGjmobxEyI.sC
+    vvibe:
+      email: contact.visionaryvibe@gmail.com
+      name: Visionary Vibe
+      password: $2b$12$FI/4K5k9HI0/U1eoT6o1ieyYDe8waM1gvy7AcfP2y
+preauthorized:
+  emails: null
