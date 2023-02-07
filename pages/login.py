@@ -5,6 +5,8 @@ import streamlit.components.v1 as components
 
 from streamlit_authenticator.authenticate import Authenticate
 
+from user_manager import *
+
 # Loading local database file
 with open('database.yaml') as file:
     database = yaml.load(file, Loader=SafeLoader)
@@ -23,7 +25,7 @@ name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
     authenticator.logout('Logout', 'sidebar')
     st.write(f'Welcome *{name}*')
-    print(username)
+    initalize_database(username)
     st.title('Some content')
 elif authentication_status == False:
     st.error('Username/password is incorrect')
