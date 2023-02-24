@@ -1,8 +1,6 @@
 from __future__ import print_function
 
-import json
 import os.path
-import datetime
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -10,22 +8,15 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-# If modifying these scopes, delete the file token.json.
+# Our scope is to read, write, and edit the 'Angela Walks Dogs' calendar
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-
-'''def json_serial(obj):
-    """JSON serializer for objects not serializable by default json code"""
-
-    if isinstance(obj, (datetime.datetime, datetime.date)):
-        return obj.isoformat()
-    raise TypeError ("Type %s not serializable" % type(obj))'''
 
 def main_auth(event):
     creds = None
 
-    '''The file token.json stores the user's access and refresh tokens, and is
-    created automatically when the authorization flow completes for the first
-    time.'''
+    # The file token.json stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     # If there are no (valid) credentials available, let the user log in.
@@ -41,6 +32,7 @@ def main_auth(event):
             token.write(creds.to_json())
 
     try:
+        # Build our calendar
         service = build('calendar', 'v3', credentials=creds, cache_discovery=False)
 
         # Call the Calendar API
