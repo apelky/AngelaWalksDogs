@@ -25,6 +25,7 @@ name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
     authenticator.logout('Logout', 'sidebar')
     st.write(f'Welcome *{name}*')
+    #TODO:
     initalize_database(username)
     st.title('Some content')
 elif authentication_status == False:

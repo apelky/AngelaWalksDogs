@@ -2,13 +2,16 @@ import streamlit as st
 import datetime
 import streamlit.components.v1 as components
 
-'''Goal: To get creative! I don't want to pay for a scheduling service, so I am going to build my own
-Not including house sitting rn for simplicity
-'''
+from Authenticator import main_auth
 
-from GoogleCalendarQuickstart import *
+DEFAULT = 'America/Los_Angeles'
 
-event = {
+# a dictionary where the username is the key and the value is a dictionary with their event details
+# TODO: create a dictionary of dictionaries or use session state?
+# events = {}
+# event dictionary is sent to Google Calendar
+event = {}
+test_event = {
   'summary': 'Google I/O 2015',
   'location': '800 Howard St., San Francisco, CA 94103',
   'description': 'A chance to hear more about Google\'s developer products.',
@@ -36,15 +39,12 @@ event = {
   },
 }
 
-event = service.events().insert(calendarId='primary', body=event).execute()
-print 'Event created: %s' % (event.get('htmlLink'))
-
 def duration():
     duration = st.selectbox(
         'Select a duration',
         ('20 Minutes - $15', '30 Minutes - $20', '60 Minutes - $30')
     )
-    return duration
+    return duration[:2]
 
 def schedule():
     d = st.date_input(
@@ -64,10 +64,10 @@ def schedule_builder():
 
     return r_duration, r_day, r_time
 
-# bootstrap 4 collapse example
+# embed calendar for viewing within my app
 components.html(
     """
-<iframe src="https://calendar.google.com/calendar/embed?src=contact.angelawalksdogs%40gmail.com&ctz=America%2FLos_Angeles" style="border: 0" width="600" height="600" frameborder="0" scrolling="no"></iframe>
+    <iframe src="https://calendar.google.com/calendar/embed?src=contact.angelawalksdogs%40gmail.com&ctz=America%2FLos_Angeles" style="border: 0" width="600" height="600" frameborder="0" scrolling="no"></iframe>
     """,
     height=700,
 )
@@ -77,8 +77,50 @@ option = st.selectbox(
     ('Walk', 'Drop-In')
 )
 
+get_user = st.text_input(
+  'Enter your username'
+)
+
+get_pet = st.text_input(
+  'Enter your pets name'
+)
+
+get_location = st.text_input(
+  'Enter your address'
+)
+
+get_notes = st.text_input(
+  'Enter any access instructions I would need to get inside the home. For example: the access code is xyz or I left the key under the mat!'
+)
+
 if option == 'Walk':
     walk_duration, walk_day, walk_time = schedule_builder()
+    run = st.button('Done')
+    
+    # must convert it to a full datetime object before adding walk duration
+    datetime_obj = (datetime.datetime.combine(walk_day, walk_time))
+    end_time = (datetime_obj + datetime.timedelta(minutes=int(walk_duration)))
+    datetime_obj = datetime_obj.strftime('%Y-%m-%dT%H:%M:%S-08:00')
+    if datetime_obj == test_event['start']['dateTime']:
+        print("Exactly!")
+    end_time = end_time.strftime('%Y-%m-%dT%H:%M:%S-08:00')
+    print(end_time)
+
+    event['summary'] = 'Walk with '+get_pet
+    event['location'] = get_location
+    event['description'] = get_notes
+    event['start'] = {'dateTime': datetime_obj, 'timeZone':DEFAULT}
+    if(event['start']['dateTime'] != test_event['start']['dateTime']):
+        print("fml")
+        print(event['start']['dateTime'])
+        print(test_event['start']['dateTime'])
+    event['end'] = {'dateTime': end_time, 'timeZone':DEFAULT}
+    if run:
+        #start = test_event['start']
+        #start = start['dateTime']
+        #print(type(start))
+        main_auth(event)
 
 if option == 'Drop-In':
+    #TODO
     drop_duration, drop_day, drop_time = schedule_builder()

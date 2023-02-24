@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-'''
 # Security
 # passlib,hashlib,bcrypt,scrypt
 import hashlib
@@ -12,7 +11,7 @@ def check_hashes(password,hashed_text):
 	if make_hashes(password) == hashed_text:
 		return hashed_text
 	return False
-'''
+
 
 # DB Management
 import sqlite3 
@@ -31,7 +30,6 @@ def login_user(username,password):
 	c.execute('SELECT * FROM userstable WHERE username =? AND password = ?',(username,password))
 	data = c.fetchall()
 	return data
-
 
 def view_all_users():
 	c.execute('SELECT * FROM userstable')
