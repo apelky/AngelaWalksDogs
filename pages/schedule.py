@@ -119,11 +119,13 @@ if option == 'Walk':
     run = st.button('Done')
 
     if run:
-        main_auth(event)
+        confirmation = main_auth(event)
+        st.write(confirmation)
 
 if option == 'Drop-In':
     event = schedule_builder('Drop-In with ')
     run = st.button('Done')
 
     if run:
-        main_auth(event)
+        confirmation = main_auth(event)
+        st.write(confirmation)

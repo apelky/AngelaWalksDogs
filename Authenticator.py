@@ -1,4 +1,14 @@
-from __future__ import print_function
+'''
+Authenticator.py last edited on ?.
+
+Angela Pelky
+
+This is the helper progam Authenticator.py to used to authenticate users and build the Google Calendar in order to insert an event into it.
+
+----------------------------------------
+
+Authenticator.py uses Python 3.10
+'''
 
 import os.path
 
@@ -14,9 +24,8 @@ SCOPES = ['https://www.googleapis.com/auth/calendar']
 def main_auth(event):
     creds = None
 
-    # The file token.json stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
+    # The file token.json stores the user's access and refresh tokens, and is created automatically when the authorization flow completes 
+    # for the first time. Remove this file if an expiration message shows up.
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     # If there are no (valid) credentials available, let the user log in.
@@ -37,7 +46,7 @@ def main_auth(event):
 
         # Call the Calendar API
         event = service.events().insert(calendarId='contact.angelawalksdogs@gmail.com', body=event).execute()
-        print('Event created: %s' % (event.get('htmlLink')))
+        return_message = 'Your event has been created! You can view it at this link: %s Thank you for using my services!' % (event.get('htmlLink'))
     except HttpError as error:
-        print('An error occurred: %s' % error)
-    return
+        return_message = 'An error occurred: %s' % error
+    return return_message
