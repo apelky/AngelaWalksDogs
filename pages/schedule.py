@@ -21,7 +21,7 @@ import streamlit.components.v1 as components
 from streamlit_extras.switch_page_button import switch_page
 
 from Authenticator import main_auth
-from user_manager import file_with_user
+from test_user_manager import add_userdata
 
 DEFAULT = 'America/Los_Angeles'
 STRIPE_CHECKOUT = 'https://buy.stripe.com/test_dR69B6bnldfk3pC8wx'
@@ -136,7 +136,7 @@ if option == 'Walk':
         confirmation = main_auth(event)
         st.write(confirmation)
         next_steps()
-        file_with_user(get_user)
+        add_userdata(get_user,event)
 
 if option == 'Drop-In':
     event = schedule_builder('Drop-In with ')
@@ -146,4 +146,4 @@ if option == 'Drop-In':
         confirmation = main_auth(event)
         st.write(confirmation)
         next_steps()
-        file_with_user(get_user, event)
+        add_userdata(get_user, event)

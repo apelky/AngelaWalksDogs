@@ -8,6 +8,22 @@ credentials:
       email: pelkyangela@gmail.com
       name: Angela Pelky
       password: $2b$12$HQikqjr0EvaNYqZzBPLhqOgsUGBj9gKCy7q3CrJirGjmobxEyI.sC
+    ho:
+      email: howdy
+      name: h
+      password: $2b$12$KOOY3mCbaTILnpyYOtltWe9XUVd3jBX220xOL7/y3Hu1SYeZoewTG
+    la:
+      email: fa
+      name: fala
+      password: $2b$12$SXJ24cfG/Yz6XhuoNg/zBeN6KcuVS7xkZilE8hu.7e8nT.5jCqSHW
+    tab:
+      email: tfab
+      name: tfab
+      password: $2b$12$Fe.J.zSLJGil7Q.hM9mf/.2PJVf3ZCjdLqIio./hhXqqxTpDkqeQq
+    test:
+      email: test
+      name: test
+      password: $2b$12$TXa7oI4speqeMJ5fsIFEdO73EO3morL4oG5pR2sRqN2d.3nVxjr1a
     vvibe:
       email: contact.visionaryvibe@gmail.com
       name: Visionary Vibe
