@@ -6,7 +6,8 @@ Angela Pelky
 This acts as a page of my web app that prompts the user to schedule a service and adds it to my calendar.
 Please note that this is a prototype, and some of the questions prompted such as address and key code could be compromisable.
 Upon release of this app please ensure that all security measures have been met. Furthermore, this schedule does not include the need
-for driving time between bookings. It would also be nice if I could find a way to make Google Calendar look nicer. This program calls 
+for driving time between bookings. It would also be nice if I could find a way to make Google Calendar look nicer. Another possible addition
+is to make sure that the person pays by deleting the event if payment is not processed using the Stripe API. This program calls 
 upon the helper progam Authenticator.py to build the Google Calendar and insert an event into it.
 
 ----------------------------------------
@@ -17,10 +18,13 @@ schedule.py uses Python 3.10
 import streamlit as st
 import datetime
 import streamlit.components.v1 as components
+from streamlit_extras.switch_page_button import switch_page
 
 from Authenticator import main_auth
+from user_manager import file_with_user
 
 DEFAULT = 'America/Los_Angeles'
+STRIPE_CHECKOUT = 'https://buy.stripe.com/test_dR69B6bnldfk3pC8wx'
 
 # TODO: create a dictionary of dictionaries or use session state?
 # a dictionary where the username is the key and the value is a dictionary with their event details
@@ -58,6 +62,16 @@ def schedule():
 def time():
     t = st.time_input('See calendar, select a time when I am not already "busy"', datetime.time(9, 00))
     return t
+
+# Helper function that prints out confirmation messages.
+# Parameters: None
+# Returns: None
+def next_steps():
+    st.markdown(
+    f'<a href={STRIPE_CHECKOUT} class="button">👉 Complete booking with payment</a>',
+    unsafe_allow_html=True,
+    )
+    st.write('Once payment has been recieved you can navigate to the login page to see your confirmed booking!')
 
 # embed calendar for viewing within my app
 components.html(
@@ -121,6 +135,8 @@ if option == 'Walk':
     if run:
         confirmation = main_auth(event)
         st.write(confirmation)
+        next_steps()
+        file_with_user(get_user)
 
 if option == 'Drop-In':
     event = schedule_builder('Drop-In with ')
@@ -129,3 +145,5 @@ if option == 'Drop-In':
     if run:
         confirmation = main_auth(event)
         st.write(confirmation)
+        next_steps()
+        file_with_user(get_user, event)

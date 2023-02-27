@@ -46,7 +46,7 @@ def main_auth(event):
 
         # Call the Calendar API
         event = service.events().insert(calendarId='contact.angelawalksdogs@gmail.com', body=event).execute()
-        return_message = 'Your event has been created! You can view it at this link: %s Thank you for using my services!' % (event.get('htmlLink'))
+        return_message = 'Your event has been created. Please complete your payment to confirm your slot.'
     except HttpError as error:
         return_message = 'An error occurred: %s' % error
     return return_message
