@@ -21,7 +21,7 @@ import streamlit.components.v1 as components
 from streamlit_extras.switch_page_button import switch_page
 
 from Authenticator import main_auth
-from test_user_manager import add_userdata
+from user_manager import add_userdata
 
 DEFAULT = 'America/Los_Angeles'
 STRIPE_CHECKOUT = 'https://buy.stripe.com/test_dR69B6bnldfk3pC8wx'
@@ -87,9 +87,13 @@ option = st.selectbox(
     ('Walk', 'Drop-In')
 )
 
-get_user = st.text_input(
-  'Enter your username'
-)
+registered = st.selectbox("Are you a registered user?", ('Yes', 'No'))
+if registered == 'Yes':
+    get_user = st.text_input(
+    'Enter your username'
+    )
+else:
+    "Please register on the 'login' page before scheduling a service with me if you'd like to have increased functionality such as viewing your booked walks on the booked page" 
 
 get_pet = st.text_input(
   'Enter your pets name'
@@ -144,6 +148,6 @@ if option == 'Drop-In':
 
     if run:
         confirmation = main_auth(event)
-        st.write(confirmation)
+        st.success(confirmation)
         next_steps()
         add_userdata(get_user, event)

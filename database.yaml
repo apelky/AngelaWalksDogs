@@ -24,6 +24,14 @@ credentials:
       email: test
       name: test
       password: $2b$12$TXa7oI4speqeMJ5fsIFEdO73EO3morL4oG5pR2sRqN2d.3nVxjr1a
+    test1:
+      email: test1
+      name: test1
+      password: $2b$12$xOSD4R5BJ4OVtJwSap4x4.7rGkAP2OLR4OYlD9O/CxjIHP9azjgL6
+    test2:
+      email: test2
+      name: test2
+      password: $2b$12$opgXsU92phSNKFavS7oZBeym1QZMH.KrGzok5NUZX6P5P48284ibu
     vvibe:
       email: contact.visionaryvibe@gmail.com
       name: Visionary Vibe
