@@ -39,7 +39,8 @@ if authentication_status:
     authenticator.logout('Logout', 'sidebar')
     st.title(f'Welcome *{name}*')
     st.session_state[username] = True
-    logged_in(username)
+    if "Logged In User" not in st.session_state:
+        st.session_state["Logged In User"] = username
 elif authentication_status == False:
     st.error('Username/password is incorrect')
 elif authentication_status == None:
