@@ -1,3 +1,15 @@
+'''
+login.py last edited on ?.
+
+Angela Pelky
+
+This is a page where users can login and get authenticated. It stores users data in database.yaml.
+
+----------------------------------------
+
+login.py uses Python 3.10
+'''
+
 import yaml
 import streamlit as st
 from yaml.loader import SafeLoader
@@ -6,6 +18,7 @@ import streamlit.components.v1 as components
 from streamlit_authenticator.authenticate import Authenticate
 
 from user_manager import *
+from booked import logged_in
 
 # Loading local database file
 with open('database.yaml') as file:
@@ -25,6 +38,8 @@ name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
     authenticator.logout('Logout', 'sidebar')
     st.title(f'Welcome *{name}*')
+    st.session_state[username] = True
+    logged_in(username)
 elif authentication_status == False:
     st.error('Username/password is incorrect')
 elif authentication_status == None:
@@ -44,6 +59,8 @@ try:
         st.success('User registered successfully')
         create_usertable()
         add_user(username,name)
+        if username not in st.session_state:
+            st.session_state[username] = False
 except Exception as e:
     st.error(e)
 

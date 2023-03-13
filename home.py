@@ -1,3 +1,14 @@
+'''
+home.py last edited on ?.
+
+Angela Pelky
+
+This is a home page where users can learn about me and get to know me better.
+----------------------------------------
+
+home.py uses Python 3.10
+'''
+
 import streamlit as st
 from PIL import Image
 

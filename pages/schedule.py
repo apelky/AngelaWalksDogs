@@ -26,10 +26,6 @@ from user_manager import add_userdata
 DEFAULT = 'America/Los_Angeles'
 STRIPE_CHECKOUT = 'https://buy.stripe.com/test_dR69B6bnldfk3pC8wx'
 
-# TODO: create a dictionary of dictionaries or use session state?
-# a dictionary where the username is the key and the value is a dictionary with their event details
-# events = {}
-
 # event dictionary is sent to Google Calendar
 event = {}
 
