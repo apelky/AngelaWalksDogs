@@ -14,8 +14,17 @@ user_manager.py uses Python 3.10
 '''
 
 import sqlite3 
+from sqlite3 import Connection
+import streamlit as st
 
-conn = sqlite3.connect('data.db')
+@st.cache(hash_funcs={Connection: id})
+def get_connection():
+    """Put the connection in cache to reuse if path does not change between Streamlit reruns.
+    NB : https://stackoverflow.com/questions/48218065/programmingerror-sqlite-objects-created-in-a-thread-can-only-be-used-in-that-sa
+    """
+    return sqlite3.connect('data.db', check_same_thread=False)
+
+conn = get_connection()
 c = conn.cursor()
 
 # DB  Functions
