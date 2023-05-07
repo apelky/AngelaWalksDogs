@@ -32,9 +32,6 @@ authenticator = Authenticate(
     database['preauthorized']
 )
 
-if 'username' not in st.session_state:
-    st.session_state['username'] = ''
-
 # creating a login widget
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
