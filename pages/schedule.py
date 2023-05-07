@@ -18,7 +18,7 @@ schedule.py uses Python 3.10
 import streamlit as st
 import datetime
 import streamlit.components.v1 as components
-from streamlit_extras.switch_page_button import switch_page
+#from streamlit_extras.switch_page_button import switch_page
 
 from Authenticator import main_auth
 from user_manager import add_userdata
@@ -67,7 +67,7 @@ def next_steps():
     f'<a href={STRIPE_CHECKOUT} class="button">👉 Complete booking with payment</a>',
     unsafe_allow_html=True,
     )
-    st.write('Once payment has been recieved you can navigate to the login page to see your confirmed booking!')
+    st.write('Once payment has been received you can navigate to the login page to see your confirmed booking!')
 
 # embed calendar for viewing within my app
 components.html(
@@ -91,8 +91,8 @@ if registered == 'Yes':
 else:
     "Please register on the 'login' page before scheduling a service with me if you'd like to have increased functionality such as viewing your booked walks on the booked page" 
 
-get_pet = st.text_input(
-  'Enter your pets name'
+get_name = st.text_input(
+  "Enter your pet's name"
 )
 
 get_location = st.text_input(
@@ -120,7 +120,7 @@ def schedule_builder(w_or_drop):
     datetime_obj = datetime_obj.strftime('%Y-%m-%dT%H:%M:%S-08:00')
     end_time = end_time.strftime('%Y-%m-%dT%H:%M:%S-08:00')
 
-    event['summary'] = w_or_drop+get_pet
+    event['summary'] = w_or_drop+get_name
     event['location'] = get_location
     event['description'] = get_notes
     event['start'] = {'dateTime': datetime_obj, 'timeZone':DEFAULT}

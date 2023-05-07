@@ -16,6 +16,10 @@ credentials:
       email: fa
       name: fala
       password: $2b$12$SXJ24cfG/Yz6XhuoNg/zBeN6KcuVS7xkZilE8hu.7e8nT.5jCqSHW
+    lgboss:
+      email: lgp01tx@duck.com
+      name: leonard
+      password: $2b$12$4RqUJRSKdu5tIVCid6P.D.ZePT68Wh.ZSgIdl4qrLOwMZXSDHczvS
     tab:
       email: tfab
       name: tfab
