@@ -72,9 +72,9 @@ def next_steps():
 # embed calendar for viewing within my app
 components.html(
     """
-    <iframe src="https://calendar.google.com/calendar/embed?src=contact.angelawalksdogs%40gmail.com&ctz=America%2FLos_Angeles" style="border: 0" width="600" height="600" frameborder="0" scrolling="no"></iframe>
-    """,
-    height=700,
+    <iframe src="https://embed.styledcalendar.com/#Vtfe1NOESzQO771n1k10" title="Styled Calendar" class="styled-calendar-container" style="width: 100%; border: none;" data-cy="calendar-embed-iframe"></iframe>
+<script async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
+    """, width=750,height=500,scrolling=True
 )
 
 # prompt user for various information

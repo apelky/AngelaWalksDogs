@@ -11,20 +11,30 @@ with open(css_file) as f:
 
 def d_format(string):
     index = string.rfind('-')
-    string = string[:index]
-    string = string.replace('T', ' ')
-    string = dt.datetime.strptime(string,"%Y-%m-%d %H:%M:%S")
-    return string
-
-
+    string = string[:index].replace('T', ' ')
+    return dt.datetime.strptime(string,"%Y-%m-%d %H:%M:%S")
 
 if st.session_state["username"] == '':
     st.warning("Welcome to the Booked Page! If you haven't yet, please login.")
     st.stop()
 else:
     user_data = get_userdata(st.session_state["username"])
-    st.write('Welcome, ',user_data[0][0],'!')
+    st.title(f"Welcome {user_data[0][0]}!")
+    st.subheader("Booked")
+    col1,col2,col3 = st.columns(3, gap="small")
+    with col1:
+        st.write("TYPE")
+    with col2:
+        st.write("DATE")
+    with col3:
+        st.write("TIME")
+
     for event in user_data:
-        date_cmp = d_format(event[1])
-        if date_cmp > dt.datetime.now():
-            st.write("You have a", event[3], "booked for:", event[1],". I'll see you then!")
+        formatted = d_format(event[1])
+        if formatted > dt.datetime.now():
+            with col1:
+                st.write(event[3])
+            with col2:
+                st.write(formatted.strftime("%a, %b %d"))
+            with col3:
+                st.write(formatted.strftime("%I:%M %p"))
