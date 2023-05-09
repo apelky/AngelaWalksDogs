@@ -26,7 +26,10 @@ DESCRIPTION = '''Hi! My name is Angela, and I an animal lover through and throug
 I am a responsible student at the University of Oregon looking to spend time with dogs. I have a wonderful pup of my own 
 named Lacy, and I have a lot of experience dog walking and pet sitting. I can’t wait to meet your amazing pet. I know how dear they are
 to your heart, so I will be sure to take amazing care of them :)'''
-EMAIL = "contact.angelawalksdogs@gmail.com"
+CONTACT = [
+    ":envelope: contact.angelawalksdogs@gmail.com", 
+    ":calling:214-984-8144"
+]
 SOCIAL_MEDIA = {
     "LinkedIn" : "https://www.linkedin.com/in/angela-pelky/",
     "Instagram" : "https://www.instagram.com/contact.angelawalksdogs/"
@@ -68,5 +71,16 @@ st.subheader("Offerings")
 for offering in OFFERINGS:
     st.write(offering)
 
+st.write("#")
+st.subheader("Questions?")
+col1,col2 = st.columns(2, gap="small")
+with col1:
+    st.write(CONTACT[0])
+with col2:
+    st.write(CONTACT[1])
+
 if 'username' not in st.session_state:
     st.session_state['username'] = ''
+
+if "visibility" not in st.session_state:
+    st.session_state.visibility = "visible"

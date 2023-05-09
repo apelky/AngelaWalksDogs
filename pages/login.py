@@ -9,7 +9,7 @@ This is a page where users can login and get authenticated. It stores users data
 
 login.py uses Python 3.10
 '''
-
+from pathlib import Path
 import yaml
 import streamlit as st
 from yaml.loader import SafeLoader
@@ -18,6 +18,12 @@ import streamlit.components.v1 as components
 from streamlit_authenticator.authenticate import Authenticate
 
 from user_manager import *
+
+current_dir = Path('pages').parent
+css_file = current_dir / "styles" / "main.css"
+
+with open(css_file) as f:
+    st.markdown("<style>{}</style>".format(f.read()),unsafe_allow_html=True)
 
 # Loading local database file
 with open('database.yaml') as file:
