@@ -20,6 +20,10 @@ credentials:
       email: lgp01tx@duck.com
       name: leonard
       password: $2b$12$4RqUJRSKdu5tIVCid6P.D.ZePT68Wh.ZSgIdl4qrLOwMZXSDHczvS
+    miah:
+      email: matwood@blah.com
+      name: maaa
+      password: $2b$12$joccu03JUNNdujMK7Midr.4cZzyIQaBPx5rk9Ree5nV1f2CTW9Rxu
     tab:
       email: tfab
       name: tfab

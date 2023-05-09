@@ -1,5 +1,5 @@
 '''
-schedule.py last edited on ?.
+schedule.py last edited on May 8th.
 
 Angela Pelky
 

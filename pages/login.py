@@ -32,7 +32,7 @@ authenticator = Authenticate(
     database['preauthorized']
 )
 
-# creating a login widget
+# Creating a login widget
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
     authenticator.logout('Logout', 'sidebar')
@@ -57,10 +57,6 @@ try:
         st.success('User registered successfully')
         create_usertable()
         add_user(username,name)
-        if "un" not in st.session_state:
-            st.session_state["un"] 
-        if "run" not in st.session_state:
-            st.session_state["run"] = False
 except Exception as e:
     st.error(e)
 
