@@ -1,5 +1,5 @@
 '''
-login.py last edited on ?.
+login.py last edited on May 9th.
 
 Angela Pelky
 
@@ -9,15 +9,15 @@ This is a page where users can login and get authenticated. It stores users data
 
 login.py uses Python 3.10
 '''
-from pathlib import Path
+
 import yaml
 import streamlit as st
-from yaml.loader import SafeLoader
-import streamlit.components.v1 as components
 
 from streamlit_authenticator.authenticate import Authenticate
+from UserManager import *
+from pathlib import Path
+from yaml.loader import SafeLoader
 
-from user_manager import *
 
 current_dir = Path('pages').parent
 css_file = current_dir / "styles" / "main.css"

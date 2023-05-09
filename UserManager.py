@@ -1,5 +1,5 @@
 '''
-user_manager.py last edited on ?.
+UserManager.py last edited on May 9th.
 
 Angela Pelky
 
@@ -10,12 +10,14 @@ toward keeping track of what times/dates the user has booked.
 
 ----------------------------------------
 
-user_manager.py uses Python 3.10
+UserManager.py uses Python 3.10
 '''
 
 import sqlite3 
-from sqlite3 import Connection
 import streamlit as st
+
+from sqlite3 import Connection
+
 
 @st.cache(hash_funcs={Connection: id})
 def get_connection():
@@ -27,7 +29,7 @@ def get_connection():
 conn = get_connection()
 c = conn.cursor()
 
-# DB  Functions
+# Database functions
 def create_usertable():
 	c.execute('CREATE TABLE IF NOT EXISTS userstable(username,name)')
 	c.execute('CREATE TABLE IF NOT EXISTS booked(username, dstart, dend, type)')

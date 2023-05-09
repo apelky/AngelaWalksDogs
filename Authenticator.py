@@ -1,5 +1,5 @@
 '''
-Authenticator.py last edited on ?.
+Authenticator.py last edited on May 9.
 
 Angela Pelky
 
@@ -45,8 +45,12 @@ def main_auth(event):
         service = build('calendar', 'v3', credentials=creds, cache_discovery=False)
 
         # Call the Calendar API
+#-------------------------------------------------------------------------------------------------------------------------------------
+# In this section you can modify the caledarID and the return message.
         event = service.events().insert(calendarId='contact.angelawalksdogs@gmail.com', body=event).execute()
-        return_message = 'Your event has been created. Please complete your payment to confirm your slot.'
+        return_message = 'Your event has been created. Thank you for choosing Angela Walks Dogs!'
+# Stop modifications here.
+#-------------------------------------------------------------------------------------------------------------------------------------
     except HttpError as error:
         return_message = 'An error occurred: %s' % error
     return return_message
